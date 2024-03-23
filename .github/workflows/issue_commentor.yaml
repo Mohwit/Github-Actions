@@ -11,4 +11,13 @@ jobs:
       - name: Dump GitHub context
         run: echo '${{ toJson(github.event) }}' | jq .
         shell: bash
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Thank you for creating a new issue
+          
+          reactions: eyes
         
