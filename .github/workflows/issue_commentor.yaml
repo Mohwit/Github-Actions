@@ -15,7 +15,7 @@ jobs:
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          issue-number: 1
+          issue-number: 7
           body: |
             Thank you for creating a new issue
           reactions: '+1,eyes'
