@@ -18,6 +18,5 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Thank you for creating a new issue
-          
-          reactions: eyes
+          reactions: '+1,eyes'
         
