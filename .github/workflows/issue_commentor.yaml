@@ -8,15 +8,18 @@ jobs:
   comment-with-action:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        run: echo '${{ toJson(github.event) }}' | jq .
-        shell: bash
+      - name: Create comment with API
+      - run: |
+          gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/OWNER/REPO/issues/${ISSUE_NUMBER}/comments \
+          -f body='Thanks for the comment' 
 
-      - name: Create comment
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          issue-number: 7
-          body: |
-            Thank you for creating a new issue
-          reactions: '+1,eyes'
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ORGANIZATION: ${{ github.event.organization.login }}
+        REPOSITORY: ${{ github.event.repository.name }}
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
         
