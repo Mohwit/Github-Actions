@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create comment with API
-      - run: |
+        run: |
           gh api \
           --method POST \
           -H "Accept: application/vnd.github+json" \
@@ -17,9 +17,9 @@ jobs:
           /repos/OWNER/REPO/issues/${ISSUE_NUMBER}/comments \
           -f body='Thanks for the comment' 
 
-    env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ORGANIZATION: ${{ github.event.organization.login }}
-        REPOSITORY: ${{ github.event.repository.name }}
-        ISSUE_NUMBER: ${{ github.event.issue.number }}
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ORGANIZATION: ${{ github.event.organization.login }}
+            REPOSITORY: ${{ github.event.repository.name }}
+            ISSUE_NUMBER: ${{ github.event.issue.number }}
         
